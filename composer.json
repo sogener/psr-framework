@@ -1,4 +1,7 @@
 {
+  "config": {
+    "sort-packages": true
+  },
   "name": "sogener/psr-framework",
   "autoload": {
     "psr-4": {
