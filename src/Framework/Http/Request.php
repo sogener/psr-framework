@@ -19,15 +19,17 @@ class Request
 
     public function setQueryParams(array $params): self
     {
-        $this->queryParams = $params;
+        $new = clone($this);
+        $new->queryParams = $params;
 
-        return $this;
+        return $new;
     }
 
     public function setParsedBody(array $body): self
     {
-        $this->parsedBody = $body;
+        $new = clone($this);
+        $new->parsedBody = $body;
 
-        return $this;
+        return $new;
     }
 }

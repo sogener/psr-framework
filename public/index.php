@@ -12,7 +12,8 @@ $request = (new Request())
     ->setQueryParams($_GET)
     ->setParsedBody($_POST);
 
-$request2 = clone $request;
-$request2->setQueryParams(['site' => 'eng']);
+$request2 = $request
+    ->setQueryParams(['hello' => 123])
+    ->setParsedBody(['body' => 222]);
 
-dd($request,$request2);
+dd($request, $request2);
