@@ -4,8 +4,8 @@ namespace Framework\Http;
 
 class Request
 {
-    private array $queryParams;
-    private ?array $parsedBody;
+    private ?array $queryParams = null;
+    private ?array $parsedBody = null;
 
     public function getQueryParams(): array
     {
@@ -17,7 +17,7 @@ class Request
         return $this->parsedBody;
     }
 
-    public function setQueryParams(array $params): self
+    public function setQueryParams(?array $params): self
     {
         $new = clone($this);
         $new->queryParams = $params;
@@ -25,7 +25,7 @@ class Request
         return $new;
     }
 
-    public function setParsedBody(array $body): self
+    public function setParsedBody(?array $body): self
     {
         $new = clone($this);
         $new->parsedBody = $body;
