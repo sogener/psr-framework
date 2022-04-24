@@ -1,18 +1,10 @@
 <?php
 
-use Framework\Http\Request;
+use Framework\Http\RequestFactory;
 
 require_once 'vendor/autoload.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+$request1 = RequestFactory::createRequest(['request1' => 'req-value1', 'body1' => 'body-value1']);
+$request2 = RequestFactory::createRequest(['request2' => 'req-value2', 'body2' => 'body-value2']);
 
-$request = (new Request())
-    ->setQueryParams($_GET)
-    ->setParsedBody($_POST);
-
-$request2 = clone $request;
-$request2->setQueryParams(['site' => 'eng']);
-
-dd($request,$request2);
+dd($request1, $request2);
