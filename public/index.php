@@ -1,10 +1,24 @@
 <?php
 
 use Framework\Http\RequestFactory;
+use Framework\Http\Response;
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
-$request1 = RequestFactory::createRequest(['request1' => 'req-value1', 'body1' => 'body-value1']);
-$request2 = RequestFactory::createRequest(['request2' => 'req-value2', 'body2' => 'body-value2']);
+### Initialization
+$request = RequestFactory::fromGlobals();
 
-dd($request1, $request2);
+### Action
+$name = $request->getQueryParams()['name'] ?? 'Anonymous';
+
+$response = (new Response($name))
+    ->withHeader('Developer', 'Sogener');
+
+### Sending
+header('HTTP/1.0' . $response->getStatusCode() . ' ' . $response->getReasonPhrase());
+
+foreach ($response->getHeaders() as $name => $value) {
+    header($name . ':' . $value);
+}
+
+echo $response->getBody();
